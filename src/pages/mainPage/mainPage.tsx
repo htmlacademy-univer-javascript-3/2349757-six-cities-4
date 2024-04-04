@@ -1,14 +1,13 @@
 
-import HeaderLogo from '../headerLogo/headerLogo';
-import CitiesCard from './citiesCard/citiesCard';
+import HeaderLogo from '../../components/headerLogo/headerLogo';
+import { OfferType } from '../../mocks/offers';
+import MainOffersList from '../../components/mainOffersList/mainOffersList';
+
 type MainProps = {
-  cardCount: number;
+  offersList: OfferType[];
 };
-function MainPage({cardCount}:MainProps):JSX.Element{
-  const citiesCards:JSX.Element[] = [];
-  for(let i = 0; i < cardCount; i ++){
-    citiesCards.push(<CitiesCard />);
-  }
+
+function MainPage({offersList}: MainProps):JSX.Element{
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -94,9 +93,7 @@ function MainPage({cardCount}:MainProps):JSX.Element{
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {citiesCards}
-              </div>
+              <MainOffersList offersList={offersList}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
