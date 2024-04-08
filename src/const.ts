@@ -1,7 +1,10 @@
 
-enum AuthorizationStatus {
+export enum AuthorizationStatus {
   AUT,
   UNAUT
 }
 
-export default AuthorizationStatus;
+export enum OffersListType {
+  MAIN,
+  NEARBY
+}

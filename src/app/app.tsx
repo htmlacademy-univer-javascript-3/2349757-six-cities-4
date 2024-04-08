@@ -6,9 +6,9 @@ import FavoritesPage from '../pages/favoritesPage/favoritesPage';
 import OfferPage from '../pages/offerPage/offerPage';
 import Page404 from '../pages/page404/page404';
 import PrivateRoute from '../privateRoute/privateRoute';
-import AuthorizationStatus from '../const';
 import { OfferType } from '../mocks/offers';
 import { FavoriteType } from '../mocks/favotites';
+import { AuthorizationStatus } from '../const';
 
 type AppProbs = {
   offersList: OfferType[];

@@ -25,7 +25,7 @@ function MainOffer({ offer, OnMouseEnter, OnMouseLeave}: MainOfferProps): JSX.El
         <span>{mark}</span>
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`offer/${id}`}>
+        <Link to={`/offer/${id}`}>
           <img className="place-card__image" src={src} width="260" height="200" alt="Place image" />
         </Link>
       </div>
@@ -49,7 +49,7 @@ function MainOffer({ offer, OnMouseEnter, OnMouseLeave}: MainOfferProps): JSX.El
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`offer/${id}`}>{description}</Link>
+          <Link to={`/offer/${id}`}>{description}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
