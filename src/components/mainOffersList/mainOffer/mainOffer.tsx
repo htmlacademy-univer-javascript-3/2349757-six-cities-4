@@ -1,18 +1,25 @@
 import { Link } from 'react-router-dom';
 import { OfferType } from '../../../mocks/offers';
-import { useState } from 'react';
 
 type MainOfferProps = {
   offer: OfferType;
+  OnMouseEnter: (id: string) => void;
+  OnMouseLeave: () => void;
 }
 
-function MainOffer({ offer }: MainOfferProps): JSX.Element {
-  const [, setChooseOffer] = useState('');
+function MainOffer({ offer, OnMouseEnter, OnMouseLeave}: MainOfferProps): JSX.Element {
   const { id, mark, src, price, description, type } = offer;
   return (
     <article
       className="cities__card place-card"
-      onMouseOver={() => setChooseOffer(id)}
+      onMouseEnter={(evt) => {
+        evt.preventDefault();
+        OnMouseEnter(offer.id);
+      }}
+      onMouseLeave={(evt) => {
+        evt.preventDefault();
+        OnMouseLeave();
+      }}
     >
       <div className="place-card__mark">
         <span>{mark}</span>
