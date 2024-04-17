@@ -1,6 +1,6 @@
 import React from 'react';
-import { ReviewType } from '../../mocks/review';
 import OfferReview from './offerReview/offerReview';
+import { ReviewType } from '../../types/types';
 
 type offerReviewListProps = {
   reviews: ReviewType[];

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FavoriteType } from '../../../mocks/favotites';
+import { FavoriteType } from '../../../types/types';
 
 type FavoriteOfferProps = {
   favoriteOffer: FavoriteType;

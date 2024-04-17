@@ -1,12 +1,4 @@
-
-export type FavoriteType = {
-  id: string;
-  mark: string;
-  src: string;
-  price: number;
-  description: string;
-  type: string;
-};
+import { FavoriteType } from '../types/types';
 
 export const favoritesMock: FavoriteType[] = [
   {

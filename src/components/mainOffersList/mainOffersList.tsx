@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { OfferType } from '../../mocks/offers';
 import MainOffer from './mainOffer/mainOffer';
 import { Map } from '../map/map';
 import { OffersListType } from '../../const';
 import React from 'react';
+import { OfferType } from '../../types/types';
 
 type MainOffersListProps = {
   offersList: OfferType[];

@@ -2,17 +2,18 @@ import { Link, useParams } from 'react-router-dom';
 import HeaderLogo from '../../components/headerLogo/headerLogo';
 import Page404 from '../page404/page404';
 import CommentForm from '../../components/commentForm/commentForm';
-import { OfferType, offersNearbyMock } from '../../mocks/offers';
+import { offersNearbyMock } from '../../mocks/offers';
 import OfferReviewList from '../../components/offerReviewList/offerReviewList';
 import { reviewsMock } from '../../mocks/review';
 import MainOffersList from '../../components/mainOffersList/mainOffersList';
 import { OffersListType } from '../../const';
+import { OfferType } from '../../types/types';
 
 type OfferProps = {
   offers: OfferType[];
 }
 
-function OfferPage({offers}:OfferProps): JSX.Element {
+function OfferPage({ offers }: OfferProps): JSX.Element {
   const p = useParams();
   const someOffer = offers.find((offer) => offer.id === p.id);
   return someOffer ? (
@@ -68,9 +69,12 @@ function OfferPage({offers}:OfferProps): JSX.Element {
           </div>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              <div className="offer__mark">
-                <span>Premium</span>
-              </div>
+              {someOffer.isPremium
+                ?
+                <div className="offer__mark">
+                  <span>Premium</span>
+                </div>
+                : null }
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
                   {someOffer.description}
@@ -162,18 +166,18 @@ function OfferPage({offers}:OfferProps): JSX.Element {
                 </div>
               </div>
               <section className="offer__reviews reviews">
-                <OfferReviewList reviews={reviewsMock}/>
+                <OfferReviewList reviews={reviewsMock} />
                 <CommentForm />
               </section>
             </div>
           </div>
         </section>
         <div className="container">
-          <MainOffersList offersList={offersNearbyMock} typeList={OffersListType.NEARBY}/>
+          <MainOffersList offersList={offersNearbyMock} typeList={OffersListType.NEARBY} />
         </div>
       </main>
     </div>
-  ) : <Page404 /> ;
+  ) : <Page404 />;
 }
 
 export default OfferPage;

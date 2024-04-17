@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import HeaderLogo from '../../components/headerLogo/headerLogo';
-import { FavoriteType } from '../../mocks/favotites';
 import FavoriteOffers from '../../components/favoriteOffers/favoriteOffers';
+import { FavoriteType } from '../../types/types';
 
 type FavoritesProps = {
   favoriteOffers: FavoriteType[];

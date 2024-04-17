@@ -1,9 +1,9 @@
 
 import HeaderLogo from '../../components/headerLogo/headerLogo';
-import { OfferType } from '../../mocks/offers';
 import MainOffersList from '../../components/mainOffersList/mainOffersList';
 import { OffersListType } from '../../const';
 import { Link } from 'react-router-dom';
+import { OfferType } from '../../types/types';
 
 type MainProps = {
   offersList: OfferType[];

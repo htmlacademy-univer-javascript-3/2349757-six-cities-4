@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { OfferType } from '../../../mocks/offers';
+import { OfferType } from '../../../types/types';
 
 type MainOfferProps = {
   offer: OfferType;
@@ -7,8 +7,8 @@ type MainOfferProps = {
   OnMouseLeave: () => void;
 }
 
-function MainOffer({ offer, OnMouseEnter, OnMouseLeave}: MainOfferProps): JSX.Element {
-  const { id, mark, src, price, description, type } = offer;
+function MainOffer({ offer, OnMouseEnter, OnMouseLeave }: MainOfferProps): JSX.Element {
+  const { id, src, price, description, type, isPremium } = offer;
   return (
     <article
       className="cities__card place-card"
@@ -21,9 +21,13 @@ function MainOffer({ offer, OnMouseEnter, OnMouseLeave}: MainOfferProps): JSX.El
         OnMouseLeave();
       }}
     >
-      <div className="place-card__mark">
-        <span>{mark}</span>
-      </div>
+      {isPremium
+        ? (
+          <div className="place-card__mark">
+            <span>Premium</span>
+          </div>)
+        : null}
+
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${id}`}>
           <img className="place-card__image" src={src} width="260" height="200" alt="Place image" />
