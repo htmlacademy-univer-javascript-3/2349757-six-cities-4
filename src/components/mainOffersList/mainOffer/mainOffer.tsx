@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { OfferType } from '../../../types/types';
 
@@ -8,7 +9,7 @@ type MainOfferProps = {
 }
 
 function MainOffer({ offer, OnMouseEnter, OnMouseLeave }: MainOfferProps): JSX.Element {
-  const { id, src, price, description, type, isPremium } = offer;
+  const { id, src, price, description, type, isPremium, rating } = offer;
   return (
     <article
       className="cities__card place-card"
@@ -48,7 +49,7 @@ function MainOffer({ offer, OnMouseEnter, OnMouseLeave }: MainOfferProps): JSX.E
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: '80%' }}></span>
+            <span style={{ width: `${rating / 5 * 100}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

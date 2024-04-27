@@ -7,15 +7,11 @@ type offerReviewListProps = {
 }
 
 function OfferReviewList({reviews}: offerReviewListProps): JSX.Element {
-  const reviewsList: JSX.Element[] = [];
-  for (let i = 0; i < reviews.length; i++){
-    reviewsList.push(<OfferReview key={reviews[i].id} review={reviews[i]}/>);
-  }
   return (
     <React.Fragment>
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
       <ul className="reviews__list">
-        {reviewsList}
+        {reviews.map((review) => (<OfferReview key={review.id} review={review}/>))}
       </ul>
     </React.Fragment>
   );

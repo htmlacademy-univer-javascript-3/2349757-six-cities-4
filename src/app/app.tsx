@@ -11,10 +11,11 @@ import { FavoriteType, OfferType } from '../types/types';
 
 type AppProbs = {
   offersList: OfferType[];
-  favoriteOffers: FavoriteType[];
+  offersNearbyList: OfferType[];
+  favoriteOffersList: FavoriteType[];
 };
 
-function App({ offersList, favoriteOffers }: AppProbs): JSX.Element {
+function App({ offersList, favoriteOffersList, offersNearbyList }: AppProbs): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -23,12 +24,12 @@ function App({ offersList, favoriteOffers }: AppProbs): JSX.Element {
           <Route path='login' element={<LoginPage />} />
           <Route path='favorites' element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.UNAUT}>
-              <FavoritesPage favoriteOffers={favoriteOffers} />
+              <FavoritesPage favoriteOffersList={favoriteOffersList} />
             </PrivateRoute>
           }
           />
           <Route path='offer/:id' element={
-            <OfferPage offers={offersList}/>
+            <OfferPage offers={offersList} nearbyOffers={offersNearbyList}/>
           }
           />
         </Route>

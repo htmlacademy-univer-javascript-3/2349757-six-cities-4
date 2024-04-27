@@ -1,7 +1,6 @@
 
 import HeaderLogo from '../../components/headerLogo/headerLogo';
 import MainOffersList from '../../components/mainOffersList/mainOffersList';
-import { OffersListType } from '../../const';
 import { Link } from 'react-router-dom';
 import { OfferType } from '../../types/types';
 
@@ -76,7 +75,7 @@ function MainPage({offersList}: MainProps):JSX.Element{
           </section>
         </div>
         <div className="cities">
-          <MainOffersList offersList={offersList} typeList={OffersListType.MAIN}/>
+          <MainOffersList offersList={offersList}/>
         </div>
       </main>
     </div>

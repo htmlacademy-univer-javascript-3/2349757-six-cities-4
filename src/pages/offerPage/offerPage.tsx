@@ -2,20 +2,19 @@ import { Link, useParams } from 'react-router-dom';
 import HeaderLogo from '../../components/headerLogo/headerLogo';
 import Page404 from '../page404/page404';
 import CommentForm from '../../components/commentForm/commentForm';
-import { offersNearbyMock } from '../../mocks/offers';
 import OfferReviewList from '../../components/offerReviewList/offerReviewList';
 import { reviewsMock } from '../../mocks/review';
-import MainOffersList from '../../components/mainOffersList/mainOffersList';
-import { OffersListType } from '../../const';
 import { OfferType } from '../../types/types';
+import NearbyOffersList from '../../components/nearbyOffersList/nearbyOffersList';
 
 type OfferProps = {
   offers: OfferType[];
+  nearbyOffers: OfferType[];
 }
 
-function OfferPage({ offers }: OfferProps): JSX.Element {
+function OfferPage({ offers, nearbyOffers }: OfferProps): JSX.Element {
   const p = useParams();
-  const someOffer = offers.find((offer) => offer.id === p.id);
+  const someOffer = [...offers, ...nearbyOffers].find((offer) => offer.id === p.id);
   return someOffer ? (
     <div className="page">
       <header className="header">
@@ -88,10 +87,10 @@ function OfferPage({ offers }: OfferProps): JSX.Element {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{ width: '80%' }}></span>
+                  <span style={{ width: `${someOffer.rating / 5 * 100}%` }}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="offer__rating-value rating__value">4.8</span>
+                <span className="offer__rating-value rating__value">{someOffer.rating}</span>
               </div>
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
@@ -173,7 +172,7 @@ function OfferPage({ offers }: OfferProps): JSX.Element {
           </div>
         </section>
         <div className="container">
-          <MainOffersList offersList={offersNearbyMock} typeList={OffersListType.NEARBY} />
+          <NearbyOffersList offersList={nearbyOffers} />
         </div>
       </main>
     </div>

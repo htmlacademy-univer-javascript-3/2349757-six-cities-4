@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import HeaderLogo from '../../components/headerLogo/headerLogo';
-import FavoriteOffers from '../../components/favoriteOffers/favoriteOffers';
 import { FavoriteType } from '../../types/types';
+import FavoriteOffersList from '../../components/favoriteOffersList/favoriteOffersList';
 
 type FavoritesProps = {
-  favoriteOffers: FavoriteType[];
+  favoriteOffersList: FavoriteType[];
 };
 
-function FavoritesPage({favoriteOffers}: FavoritesProps): JSX.Element {
+function FavoritesPage({ favoriteOffersList }: FavoritesProps): JSX.Element {
 
   return (
     <div className="page">
@@ -49,7 +49,7 @@ function FavoritesPage({favoriteOffers}: FavoritesProps): JSX.Element {
                     </Link>
                   </div>
                 </div>
-                <FavoriteOffers favoriteOffers = {favoriteOffers}/>
+                <FavoriteOffersList favoriteOffersList={favoriteOffersList}/>
               </li>
             </ul>
           </section>

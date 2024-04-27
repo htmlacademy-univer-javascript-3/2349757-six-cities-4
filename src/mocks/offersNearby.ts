@@ -1,14 +1,14 @@
 import { OfferType } from '../types/types';
 
-export const offersMock: OfferType[] = [
+export const offersNearbyMock: OfferType[] = [
   {
-    id: 'b0e9d6ef-8b5b-465c-8cf6-bb52a268f4ba',
+    id: '605cb6d5-5005-42a3-8d11-ba56a640725a',
     src: 'img/apartment-01.jpg',
-    price: 70,
+    price: 78,
     description: 'Beautiful & luxurious apartment at great location',
     type: 'Apartment',
-    isPremium: false,
-    rating: 2,
+    isPremium: true,
+    rating: 4.7,
     city: {
       name: 'Amsterdam',
       location: {
@@ -24,13 +24,13 @@ export const offersMock: OfferType[] = [
     }
   },
   {
-    id: '6d15ce78-fad6-45a0-812c-045e5ca5cb76',
+    id: '72b9778b-ca10-409f-b925-6946a6bb18ae',
     src: 'img/apartment-02.jpg',
-    price: 170,
+    price: 140,
     description: 'Beautiful & luxurious hotel at great location',
     type: 'Hotel',
     isPremium: false,
-    rating: 2.4,
+    rating: 3.3,
     city: {
       name: 'Amsterdam',
       location: {
@@ -46,13 +46,13 @@ export const offersMock: OfferType[] = [
     }
   },
   {
-    id: '0f4cdf1f-c954-4742-874b-b666ec6d8015',
+    id: 'c7e8bfd2-d125-4ce1-9745-5e2a4c2363ff',
     src: 'img/apartment-03.jpg',
-    price: 100,
+    price: 110,
     description: 'Beautiful & luxurious apartment at great location',
     type: 'Apartment',
-    isPremium: false,
-    rating: 4,
+    isPremium: true,
+    rating: 2.4,
     city: {
       name: 'Amsterdam',
       location: {
@@ -67,26 +67,4 @@ export const offersMock: OfferType[] = [
       zoom: 16
     }
   },
-  {
-    id: '8e5fe338-06d7-4e80-b7a1-09d52c100cf6',
-    src: 'img/apartment-01.jpg',
-    price: 90,
-    description: 'Beautiful & luxurious hotel at great location',
-    type: 'Hotel',
-    isPremium: true,
-    rating: 5,
-    city: {
-      name: 'Amsterdam',
-      location: {
-        lat: 52.37,
-        lng: 4.88,
-        zoom: 12
-      }
-    },
-    location: {
-      lat: 52.3809553943508,
-      lng: 4.939309666406198,
-      zoom: 16
-    }
-  }
 ];

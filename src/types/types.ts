@@ -1,13 +1,4 @@
 
-export type FavoriteType = {
-  id: string;
-  mark: string;
-  src: string;
-  price: number;
-  description: string;
-  type: string;
-};
-
 export type CityType = {
   name: string;
   location: {
@@ -25,6 +16,23 @@ export type OfferType = {
   type: string;
   city: CityType;
   isPremium: boolean;
+  rating: number;
+  location: {
+    lat: number;
+    lng: number;
+    zoom: number;
+  };
+};
+
+export type FavoriteType = {
+  id: string;
+  src: string;
+  price: number;
+  description: string;
+  type: string;
+  city: CityType;
+  isPremium: boolean;
+  rating: number;
   location: {
     lat: number;
     lng: number;
