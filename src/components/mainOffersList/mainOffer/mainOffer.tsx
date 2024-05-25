@@ -4,22 +4,22 @@ import { OfferType } from '../../../types/types';
 
 type MainOfferProps = {
   offer: OfferType;
-  OnMouseEnter: (id: string) => void;
-  OnMouseLeave: () => void;
+  onMouseEnter: (id: string) => void;
+  onMouseLeave: () => void;
 }
 
-function MainOffer({ offer, OnMouseEnter, OnMouseLeave }: MainOfferProps): JSX.Element {
+function MainOffer({ offer, onMouseEnter, onMouseLeave }: MainOfferProps): JSX.Element {
   const { id, src, price, description, type, isPremium, rating } = offer;
   return (
     <article
       className="cities__card place-card"
       onMouseEnter={(evt) => {
         evt.preventDefault();
-        OnMouseEnter(offer.id);
+        onMouseEnter(offer.id);
       }}
       onMouseLeave={(evt) => {
         evt.preventDefault();
-        OnMouseLeave();
+        onMouseLeave();
       }}
     >
       {isPremium

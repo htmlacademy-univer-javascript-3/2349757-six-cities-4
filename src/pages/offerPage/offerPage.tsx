@@ -6,16 +6,30 @@ import OfferReviewList from '../../components/offerReviewList/offerReviewList';
 import { reviewsMock } from '../../mocks/review';
 import { OfferType } from '../../types/types';
 import NearbyOffersList from '../../components/nearbyOffersList/nearbyOffersList';
+import { useAppSelector } from '../../hocks';
+import { useState } from 'react';
+import { Map } from '../../components/map/map';
 
 type OfferProps = {
   offers: OfferType[];
-  nearbyOffers: OfferType[];
 }
 
-function OfferPage({ offers, nearbyOffers }: OfferProps): JSX.Element {
-  const p = useParams();
-  const someOffer = [...offers, ...nearbyOffers].find((offer) => offer.id === p.id);
-  return someOffer ? (
+function OfferPage({ offers }: OfferProps): JSX.Element {
+  const params = useParams();
+  const offer = offers.find((o) => o.id === params.id);
+  const city = useAppSelector((state) => state.city);
+  const offersNearby = useAppSelector((state) => state.offersNearby);
+  const [chooseOffer, setChooseOffer] = useState<OfferType | undefined>(undefined);
+
+  const onMouseEnter = (id:string) => {
+    setChooseOffer(offers.find((o) => o.id === id));
+  };
+
+  const onMouseLeave = () => {
+    setChooseOffer(undefined);
+  };
+
+  return offer ? (
     <div className="page">
       <header className="header">
         <div className="container">
@@ -24,7 +38,7 @@ function OfferPage({ offers, nearbyOffers }: OfferProps): JSX.Element {
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
-                  <Link className="header__nav-link header__nav-link--profile" to="#todo">
+                  <Link className="header__nav-link header__nav-link--profile" to="/login">
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
                     <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
@@ -68,7 +82,7 @@ function OfferPage({ offers, nearbyOffers }: OfferProps): JSX.Element {
           </div>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              {someOffer.isPremium
+              {offer.isPremium
                 ?
                 <div className="offer__mark">
                   <span>Premium</span>
@@ -76,7 +90,7 @@ function OfferPage({ offers, nearbyOffers }: OfferProps): JSX.Element {
                 : null }
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
-                  {someOffer.description}
+                  {offer.description}
                 </h1>
                 <button className="offer__bookmark-button button" type="button">
                   <svg className="offer__bookmark-icon" width="31" height="33">
@@ -87,14 +101,14 @@ function OfferPage({ offers, nearbyOffers }: OfferProps): JSX.Element {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{ width: `${someOffer.rating / 5 * 100}%` }}></span>
+                  <span style={{ width: `${offer.rating / 5 * 100}%` }}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="offer__rating-value rating__value">{someOffer.rating}</span>
+                <span className="offer__rating-value rating__value">{offer.rating}</span>
               </div>
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
-                  Apartment
+                  {offer.type}
                 </li>
                 <li className="offer__feature offer__feature--bedrooms">
                   3 Bedrooms
@@ -104,7 +118,7 @@ function OfferPage({ offers, nearbyOffers }: OfferProps): JSX.Element {
                 </li>
               </ul>
               <div className="offer__price">
-                <b className="offer__price-value">&euro;{someOffer.price}</b>
+                <b className="offer__price-value">&euro;{offer.price}</b>
                 <span className="offer__price-text">&nbsp;night</span>
               </div>
               <div className="offer__inside">
@@ -172,11 +186,14 @@ function OfferPage({ offers, nearbyOffers }: OfferProps): JSX.Element {
           </div>
         </section>
         <div className="container">
-          <NearbyOffersList offersList={nearbyOffers} />
+          <section className="offer__map map">
+            <Map offers={offersNearby} selectedOffer={chooseOffer} city={city} />
+          </section>
+          <NearbyOffersList offersList={offersNearby} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} />
         </div>
       </main>
     </div>
-  ) : <Page404 />;
+  ) : (<Page404 />);
 }
 
 export default OfferPage;

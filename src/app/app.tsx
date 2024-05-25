@@ -7,29 +7,25 @@ import OfferPage from '../pages/offerPage/offerPage';
 import Page404 from '../pages/page404/page404';
 import PrivateRoute from '../privateRoute/privateRoute';
 import { AuthorizationStatus } from '../const';
-import { FavoriteType, OfferType } from '../types/types';
+import { favoritesMock } from '../mocks/favotites';
+import { offersMock } from '../mocks/offers';
 
-type AppProbs = {
-  offersList: OfferType[];
-  offersNearbyList: OfferType[];
-  favoriteOffersList: FavoriteType[];
-};
 
-function App({ offersList, favoriteOffersList, offersNearbyList }: AppProbs): JSX.Element {
+function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/'>
-          <Route index element={<MainPage offersList={offersList} />} />
+          <Route index element={<MainPage />} />
           <Route path='login' element={<LoginPage />} />
           <Route path='favorites' element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.UNAUT}>
-              <FavoritesPage favoriteOffersList={favoriteOffersList} />
+            <PrivateRoute authorizationStatus={AuthorizationStatus.AUT}>
+              <FavoritesPage favoriteOffersList={favoritesMock} />
             </PrivateRoute>
           }
           />
           <Route path='offer/:id' element={
-            <OfferPage offers={offersList} nearbyOffers={offersNearbyList}/>
+            <OfferPage offers={offersMock} />
           }
           />
         </Route>

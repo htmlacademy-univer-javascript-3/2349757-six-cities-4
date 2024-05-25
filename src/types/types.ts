@@ -1,3 +1,4 @@
+import { store } from '../store';
 
 export type CityType = {
   name: string;
@@ -22,6 +23,7 @@ export type OfferType = {
     lng: number;
     zoom: number;
   };
+  isFavorite: boolean;
 };
 
 export type FavoriteType = {
@@ -38,6 +40,7 @@ export type FavoriteType = {
     lng: number;
     zoom: number;
   };
+  isFavorite: boolean;
 };
 
 export type ReviewType = {
@@ -48,3 +51,7 @@ export type ReviewType = {
   name: string;
   rating: number;
 };
+
+export type State = ReturnType<typeof store.getState>;
+export type Dispatch = typeof store.dispatch;
+

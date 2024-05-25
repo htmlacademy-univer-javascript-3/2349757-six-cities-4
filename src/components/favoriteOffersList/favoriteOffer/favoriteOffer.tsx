@@ -1,9 +1,9 @@
 
 import { Link } from 'react-router-dom';
-import { FavoriteType } from '../../../types/types';
+import { OfferType } from '../../../types/types';
 
 type FavoriteOfferProps = {
-  favoriteOffer: FavoriteType;
+  favoriteOffer: OfferType;
 }
 
 function FavoriteOffer({ favoriteOffer }: FavoriteOfferProps): JSX.Element {
