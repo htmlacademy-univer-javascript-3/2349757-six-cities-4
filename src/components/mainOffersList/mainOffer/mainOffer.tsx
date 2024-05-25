@@ -9,7 +9,7 @@ type MainOfferProps = {
 }
 
 function MainOffer({ offer, onMouseEnter, onMouseLeave }: MainOfferProps): JSX.Element {
-  const { id, src, price, description, type, isPremium, rating } = offer;
+  const { id, previewImage, price, title, type, isPremium, rating } = offer;
   return (
     <article
       className="cities__card place-card"
@@ -31,7 +31,7 @@ function MainOffer({ offer, onMouseEnter, onMouseLeave }: MainOfferProps): JSX.E
 
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${id}`}>
-          <img className="place-card__image" src={src} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
         </Link>
       </div>
       <div className="place-card__info">
@@ -54,7 +54,7 @@ function MainOffer({ offer, onMouseEnter, onMouseLeave }: MainOfferProps): JSX.E
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/${id}`}>{description}</Link>
+          <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

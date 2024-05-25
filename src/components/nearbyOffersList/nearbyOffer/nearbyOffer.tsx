@@ -10,7 +10,7 @@ type NearbyOfferProps = {
 };
 
 function NearbyOffer({ offer, onMouseEnter, onMouseLeave }: NearbyOfferProps): JSX.Element {
-  const { id, src, price, description, type, isPremium, rating } = offer;
+  const { id, previewImage, price, title, type, isPremium, rating } = offer;
   const dispatch = useAppDispatch();
   return (
     <article
@@ -36,7 +36,7 @@ function NearbyOffer({ offer, onMouseEnter, onMouseLeave }: NearbyOfferProps): J
           : null}
         <div className="cities__image-wrapper place-card__image-wrapper">
 
-          <img className="place-card__image" src={src} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
         </div>
         <div className="place-card__info">
           <div className="place-card__price-wrapper">
@@ -58,7 +58,7 @@ function NearbyOffer({ offer, onMouseEnter, onMouseLeave }: NearbyOfferProps): J
             </div>
           </div>
           <h2 className="place-card__name">
-            {description}
+            {title}
           </h2>
           <p className="place-card__type">{type}</p>
         </div>

@@ -30,8 +30,8 @@ export function Map({ offers, selectedOffer, city }: MapProps) {
       const markerLayer = layerGroup().addTo(map);
       offers.forEach((offer) => {
         const marker = new Marker({
-          lat: offer.location.lat,
-          lng: offer.location.lng,
+          lat: offer.location.latitude,
+          lng: offer.location.longitude,
         });
         marker
           .setIcon(
