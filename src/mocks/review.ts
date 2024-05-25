@@ -1,12 +1,4 @@
-
-export type ReviewType = {
-  id: string;
-  src: string;
-  text: string;
-  date: string;
-  name: string;
-  rating: number;
-};
+import { ReviewType } from '../types/types';
 
 export const reviewsMock: ReviewType[] = [
   {

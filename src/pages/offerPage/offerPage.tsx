@@ -2,20 +2,34 @@ import { Link, useParams } from 'react-router-dom';
 import HeaderLogo from '../../components/headerLogo/headerLogo';
 import Page404 from '../page404/page404';
 import CommentForm from '../../components/commentForm/commentForm';
-import { OfferType, offersNearbyMock } from '../../mocks/offers';
 import OfferReviewList from '../../components/offerReviewList/offerReviewList';
 import { reviewsMock } from '../../mocks/review';
-import MainOffersList from '../../components/mainOffersList/mainOffersList';
-import { OffersListType } from '../../const';
+import { OfferType } from '../../types/types';
+import NearbyOffersList from '../../components/nearbyOffersList/nearbyOffersList';
+import { useAppSelector } from '../../hocks';
+import { useState } from 'react';
+import { Map } from '../../components/map/map';
 
 type OfferProps = {
   offers: OfferType[];
 }
 
-function OfferPage({offers}:OfferProps): JSX.Element {
-  const p = useParams();
-  const someOffer = offers.find((offer) => offer.id === p.id);
-  return someOffer ? (
+function OfferPage({ offers }: OfferProps): JSX.Element {
+  const params = useParams();
+  const offer = offers.find((o) => o.id === params.id);
+  const city = useAppSelector((state) => state.city);
+  const offersNearby = useAppSelector((state) => state.offersNearby);
+  const [chooseOffer, setChooseOffer] = useState<OfferType | undefined>(undefined);
+
+  const onMouseEnter = (id:string) => {
+    setChooseOffer(offers.find((o) => o.id === id));
+  };
+
+  const onMouseLeave = () => {
+    setChooseOffer(undefined);
+  };
+
+  return offer ? (
     <div className="page">
       <header className="header">
         <div className="container">
@@ -24,7 +38,7 @@ function OfferPage({offers}:OfferProps): JSX.Element {
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
-                  <Link className="header__nav-link header__nav-link--profile" to="#todo">
+                  <Link className="header__nav-link header__nav-link--profile" to="/login">
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
                     <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
@@ -68,12 +82,15 @@ function OfferPage({offers}:OfferProps): JSX.Element {
           </div>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              <div className="offer__mark">
-                <span>Premium</span>
-              </div>
+              {offer.isPremium
+                ?
+                <div className="offer__mark">
+                  <span>Premium</span>
+                </div>
+                : null }
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
-                  {someOffer.description}
+                  {offer.description}
                 </h1>
                 <button className="offer__bookmark-button button" type="button">
                   <svg className="offer__bookmark-icon" width="31" height="33">
@@ -84,14 +101,14 @@ function OfferPage({offers}:OfferProps): JSX.Element {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{ width: '80%' }}></span>
+                  <span style={{ width: `${offer.rating / 5 * 100}%` }}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="offer__rating-value rating__value">4.8</span>
+                <span className="offer__rating-value rating__value">{offer.rating}</span>
               </div>
               <ul className="offer__features">
                 <li className="offer__feature offer__feature--entire">
-                  Apartment
+                  {offer.type}
                 </li>
                 <li className="offer__feature offer__feature--bedrooms">
                   3 Bedrooms
@@ -101,7 +118,7 @@ function OfferPage({offers}:OfferProps): JSX.Element {
                 </li>
               </ul>
               <div className="offer__price">
-                <b className="offer__price-value">&euro;{someOffer.price}</b>
+                <b className="offer__price-value">&euro;{offer.price}</b>
                 <span className="offer__price-text">&nbsp;night</span>
               </div>
               <div className="offer__inside">
@@ -162,18 +179,21 @@ function OfferPage({offers}:OfferProps): JSX.Element {
                 </div>
               </div>
               <section className="offer__reviews reviews">
-                <OfferReviewList reviews={reviewsMock}/>
+                <OfferReviewList reviews={reviewsMock} />
                 <CommentForm />
               </section>
             </div>
           </div>
         </section>
         <div className="container">
-          <MainOffersList offersList={offersNearbyMock} typeList={OffersListType.NEARBY}/>
+          <section className="offer__map map">
+            <Map offers={offersNearby} selectedOffer={chooseOffer} city={city} />
+          </section>
+          <NearbyOffersList offersList={offersNearby} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} />
         </div>
       </main>
     </div>
-  ) : <Page404 /> ;
+  ) : (<Page404 />);
 }
 
 export default OfferPage;

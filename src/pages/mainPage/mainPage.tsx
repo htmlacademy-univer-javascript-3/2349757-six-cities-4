@@ -1,15 +1,30 @@
 
 import HeaderLogo from '../../components/headerLogo/headerLogo';
-import { OfferType } from '../../mocks/offers';
 import MainOffersList from '../../components/mainOffersList/mainOffersList';
-import { OffersListType } from '../../const';
 import { Link } from 'react-router-dom';
+import { OfferType } from '../../types/types';
+import { useAppSelector } from '../../hocks';
+import { useEffect, useState } from 'react';
+import CitiesList from '../../components/citiesList/citiesList';
+import SortOffers from '../../components/sortOffers/sortOffers';
+import { Map } from '../../components/map/map';
 
-type MainProps = {
-  offersList: OfferType[];
-};
 
-function MainPage({offersList}: MainProps):JSX.Element{
+function MainPage(): JSX.Element {
+  const city = useAppSelector((state) => state.city);
+  const offers = useAppSelector((state) => state.offers);
+  const [chooseOffer, setChooseOffer] = useState<OfferType | undefined>(undefined);
+  const [offersInCity, setOffersInSity] = useState<OfferType[]>(offers);
+
+  const onMouseEnter = (id: string) => {
+    setChooseOffer(offers.find((offer) => offer.id === id));
+  };
+  const onMouseLeave = () => {
+    setChooseOffer(undefined);
+  };
+  useEffect(() => {
+    setOffersInSity(offers.filter((offer) => offer.city.name === city.name));
+  }, [city, offers]);
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -41,42 +56,23 @@ function MainPage({offersList}: MainProps):JSX.Element{
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
+            <CitiesList />
           </section>
         </div>
         <div className="cities">
-          <MainOffersList offersList={offersList} typeList={OffersListType.MAIN}/>
+          <div className="cities__places-container container">
+            <section className="cities__places places">
+              <h2 className="visually-hidden">Places</h2>
+              <b className="places__found">{offersInCity.length} places to stay in {city.name}</b>
+              <SortOffers />
+              <MainOffersList offersList={offersInCity} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} />
+            </section>
+            <div className="cities__right-section">
+              <section className="cities__map map">
+                <Map offers={offersInCity} city={city} selectedOffer={chooseOffer} />
+              </section>
+            </div>
+          </div>
         </div>
       </main>
     </div>

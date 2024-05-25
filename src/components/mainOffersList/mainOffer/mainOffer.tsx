@@ -1,29 +1,34 @@
+
 import { Link } from 'react-router-dom';
-import { OfferType } from '../../../mocks/offers';
+import { OfferType } from '../../../types/types';
 
 type MainOfferProps = {
   offer: OfferType;
-  OnMouseEnter: (id: string) => void;
-  OnMouseLeave: () => void;
+  onMouseEnter: (id: string) => void;
+  onMouseLeave: () => void;
 }
 
-function MainOffer({ offer, OnMouseEnter, OnMouseLeave}: MainOfferProps): JSX.Element {
-  const { id, mark, src, price, description, type } = offer;
+function MainOffer({ offer, onMouseEnter, onMouseLeave }: MainOfferProps): JSX.Element {
+  const { id, src, price, description, type, isPremium, rating } = offer;
   return (
     <article
       className="cities__card place-card"
       onMouseEnter={(evt) => {
         evt.preventDefault();
-        OnMouseEnter(offer.id);
+        onMouseEnter(offer.id);
       }}
       onMouseLeave={(evt) => {
         evt.preventDefault();
-        OnMouseLeave();
+        onMouseLeave();
       }}
     >
-      <div className="place-card__mark">
-        <span>{mark}</span>
-      </div>
+      {isPremium
+        ? (
+          <div className="place-card__mark">
+            <span>Premium</span>
+          </div>)
+        : null}
+
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${id}`}>
           <img className="place-card__image" src={src} width="260" height="200" alt="Place image" />
@@ -44,7 +49,7 @@ function MainOffer({ offer, OnMouseEnter, OnMouseLeave}: MainOfferProps): JSX.El
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: '80%' }}></span>
+            <span style={{ width: `${rating / 5 * 100}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

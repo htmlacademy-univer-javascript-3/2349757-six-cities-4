@@ -1,7 +1,7 @@
-import { OfferType, CityType } from '../../mocks/offers';
 import { Icon, Marker, layerGroup } from 'leaflet';
 import { useEffect, useRef } from 'react';
 import useMap from '../../hocks/useMap';
+import { CityType, OfferType } from '../../types/types';
 
 type MapProps = {
   offers: OfferType[];

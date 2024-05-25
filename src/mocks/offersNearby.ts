@@ -1,14 +1,14 @@
-import { FavoriteType } from '../types/types';
+import { OfferType } from '../types/types';
 
-export const favoritesMock: FavoriteType[] = [
+export const offersNearbyMock: OfferType[] = [
   {
-    id: 'b0e9d6ef-8b5b-465c-8cf6-bb52a268f4ba',
-    src: 'https://14.design.htmlacademy.pro/static/hotel/8.jpg',
-    price: 70,
+    id: '605cb6d5-5005-42a3-8d11-ba56a640725a',
+    src: 'https://14.design.htmlacademy.pro/static/hotel/1.jpg',
+    price: 78,
     description: 'Beautiful & luxurious apartment at great location',
     type: 'Apartment',
-    isPremium: false,
-    rating: 2.3,
+    isPremium: true,
+    rating: 4.7,
     city: {
       name: 'Amsterdam',
       location: {
@@ -22,12 +22,12 @@ export const favoritesMock: FavoriteType[] = [
       lng: 4.85309666406198,
       zoom: 16
     },
-    isFavorite: true
+    isFavorite: false
   },
   {
-    id: '6d15ce78-fad6-45a0-812c-045e5ca5cb76',
-    src: 'https://14.design.htmlacademy.pro/static/hotel/9.jpg',
-    price: 170,
+    id: '72b9778b-ca10-409f-b925-6946a6bb18ae',
+    src: 'https://14.design.htmlacademy.pro/static/hotel/2.jpg',
+    price: 140,
     description: 'Beautiful & luxurious hotel at great location',
     type: 'Hotel',
     isPremium: false,
@@ -45,16 +45,16 @@ export const favoritesMock: FavoriteType[] = [
       lng: 4.85309666406198,
       zoom: 16
     },
-    isFavorite: true
+    isFavorite: false
   },
   {
-    id: '0f4cdf1f-c954-4742-874b-b666ec6d8015',
-    src: 'https://14.design.htmlacademy.pro/static/hotel/10.jpg',
-    price: 100,
+    id: 'c7e8bfd2-d125-4ce1-9745-5e2a4c2363ff',
+    src: 'https://14.design.htmlacademy.pro/static/hotel/3.jpg',
+    price: 110,
     description: 'Beautiful & luxurious apartment at great location',
     type: 'Apartment',
-    isPremium: false,
-    rating: 4.3,
+    isPremium: true,
+    rating: 2.4,
     city: {
       name: 'Amsterdam',
       location: {
@@ -68,7 +68,6 @@ export const favoritesMock: FavoriteType[] = [
       lng: 4.929309666406198,
       zoom: 16
     },
-    isFavorite: true
-  }
+    isFavorite: false
+  },
 ];
-
