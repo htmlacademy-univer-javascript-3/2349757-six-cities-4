@@ -3,24 +3,24 @@ import { store } from '../store';
 export type CityType = {
   name: string;
   location: {
-    lat: number;
-    lng: number;
+    latitude: number;
+    longitude: number;
     zoom: number;
   };
 };
 
 export type OfferType = {
   id: string;
-  src: string;
+  previewImage: string;
   price: number;
-  description: string;
+  title: string;
   type: string;
   city: CityType;
   isPremium: boolean;
   rating: number;
   location: {
-    lat: number;
-    lng: number;
+    latitude: number;
+    longitude: number;
     zoom: number;
   };
   isFavorite: boolean;
@@ -28,16 +28,16 @@ export type OfferType = {
 
 export type FavoriteType = {
   id: string;
-  src: string;
+  previewImage: string;
   price: number;
-  description: string;
+  title: string;
   type: string;
   city: CityType;
   isPremium: boolean;
   rating: number;
   location: {
-    lat: number;
-    lng: number;
+    latitude: number;
+    longitude: number;
     zoom: number;
   };
   isFavorite: boolean;

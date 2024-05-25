@@ -1,9 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { CITIES, SORT } from '../const';
-import { offersMock } from '../mocks/offers';
 import { offersNearbyMock } from '../mocks/offersNearby';
 import { CityType, OfferType } from '../types/types';
-import { getOffers, setCity, setSelectedOffer, setSort } from './action';
+import { setOffers, setCity, setSelectedOffer, setSort, setLoadingState } from './action';
 
 
 type StateType = {
@@ -12,14 +11,16 @@ type StateType = {
   offersNearby: OfferType[];
   selectedOffer: OfferType | undefined;
   selectedSortType: string;
+  loadingState: boolean;
 }
 
 const initialState: StateType = {
   city: CITIES[0],
-  offers: offersMock,
+  offers: [],
   offersNearby: offersNearbyMock,
   selectedOffer: undefined,
-  selectedSortType: SORT.Popular
+  selectedSortType: SORT.Popular,
+  loadingState: false
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -27,7 +28,7 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(setCity, (state, action) => {
       state.city = action.payload;
     })
-    .addCase(getOffers, (state, action) => {
+    .addCase(setOffers, (state, action) => {
       state.offers = action.payload;
     })
     .addCase(setSelectedOffer, (state, action) => {
@@ -35,6 +36,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setSort, (state, action) => {
       state.selectedSortType = action.payload;
+    })
+    .addCase(setLoadingState, (state, action) => {
+      state.loadingState = action.payload;
     });
 });
 

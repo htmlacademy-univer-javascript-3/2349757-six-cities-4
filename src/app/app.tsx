@@ -8,10 +8,17 @@ import Page404 from '../pages/page404/page404';
 import PrivateRoute from '../privateRoute/privateRoute';
 import { AuthorizationStatus } from '../const';
 import { favoritesMock } from '../mocks/favotites';
-import { offersMock } from '../mocks/offers';
+import { useAppSelector } from '../hocks';
+import LoadingPage from '../pages/loadingPage/loadingPage';
 
 
 function App(): JSX.Element {
+  const isLoading = useAppSelector((state) => state.loadingState);
+  if (isLoading){
+    return (
+      <LoadingPage />
+    );
+  }
   return (
     <BrowserRouter>
       <Routes>
@@ -25,7 +32,7 @@ function App(): JSX.Element {
           }
           />
           <Route path='offer/:id' element={
-            <OfferPage offers={offersMock} />
+            <OfferPage />
           }
           />
         </Route>

@@ -10,11 +10,9 @@ import { useAppSelector } from '../../hocks';
 import { useState } from 'react';
 import { Map } from '../../components/map/map';
 
-type OfferProps = {
-  offers: OfferType[];
-}
 
-function OfferPage({ offers }: OfferProps): JSX.Element {
+function OfferPage(): JSX.Element {
+  const offers: OfferType[] = useAppSelector((state) => state.offers);
   const params = useParams();
   const offer = offers.find((o) => o.id === params.id);
   const city = useAppSelector((state) => state.city);
@@ -90,7 +88,7 @@ function OfferPage({ offers }: OfferProps): JSX.Element {
                 : null }
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
-                  {offer.description}
+                  {offer.title}
                 </h1>
                 <button className="offer__bookmark-button button" type="button">
                   <svg className="offer__bookmark-icon" width="31" height="33">
