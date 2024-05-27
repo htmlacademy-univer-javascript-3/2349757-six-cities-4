@@ -1,24 +1,25 @@
-import { CityType } from './types/types';
+import { CityType } from './types/cityType';
+
 
 export enum AuthorizationStatus {
-  AUT,
-  UNAUT
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
 }
 
-export enum OffersListType {
-  MAIN,
-  NEARBY
-}
-
-export enum SORT {
+export enum SORT_TYPES {
   Popular = 'Popular',
   LowToHigh = 'Price: low to high',
   HighToLow = 'Price: high to low',
-  TopRatedFirst = 'Top rated first'
+  TopRatedFirst = 'Top rated first',
 }
 
-export const CITIES: CityType[] = [
-  {
+type Cities = {
+  [key: string]: CityType;
+};
+
+export const CITIES: Cities = {
+  Paris: {
     name: 'Paris',
     location: {
       latitude: 48.85661,
@@ -26,7 +27,7 @@ export const CITIES: CityType[] = [
       zoom: 13
     }
   },
-  {
+  Cologne: {
     name: 'Cologne',
     location: {
       latitude: 50.938361,
@@ -34,7 +35,7 @@ export const CITIES: CityType[] = [
       zoom: 13
     }
   },
-  {
+  Brussels: {
     name: 'Brussels',
     location: {
       latitude: 50.846557,
@@ -42,7 +43,7 @@ export const CITIES: CityType[] = [
       zoom: 13
     }
   },
-  {
+  Amsterdam: {
     name: 'Amsterdam',
     location: {
       latitude: 52.37454,
@@ -50,7 +51,7 @@ export const CITIES: CityType[] = [
       zoom: 13
     }
   },
-  {
+  Hamburg: {
     name: 'Hamburg',
     location: {
       latitude: 53.550341,
@@ -58,7 +59,7 @@ export const CITIES: CityType[] = [
       zoom: 13
     }
   },
-  {
+  Dusseldorf: {
     name: 'Dusseldorf',
     location: {
       latitude: 51.225402,
@@ -66,8 +67,43 @@ export const CITIES: CityType[] = [
       zoom: 13
     }
   }
-];
+};
 
-export enum ApiRoute {
-  OFFERS = '/offers',
+export enum APIRoute {
+  Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout',
+  Comments = '/comments',
+  Nearby = '/nearby',
+  Favorite = '/favorite',
 }
+
+export const TIMEOUT_SHOW_ERROR = 2000;
+
+export enum NameSpace {
+  App = 'APP',
+  User = 'USER',
+  FewOffersData = 'FEW_OFFERS_DATA',
+  SingleOfferData = 'SINGLE_OFFER_DATA',
+  favoritesData = 'favoriteS_DATA',
+  NearbyOffersData = 'NEAR_OFFERS_DATA',
+  ReviewsData = 'REVIEWS_DATA',
+}
+
+export enum ROUTES {
+  Main = '/',
+  Login = '/login',
+  Favorites = '/favorites',
+  Offer = '/offer/:id',
+  NotFound = '/*',
+}
+
+export enum LoadingStatus {
+  Idle = 'idle',
+  Loading = 'loading',
+  Success = 'success',
+  Error = 'error',
+}
+
+export const BACKEND_URL = 'https://14.design.htmlacademy.pro/six-cities';
+export const REQUEST_TIMEOUT = 5000;

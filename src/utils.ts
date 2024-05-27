@@ -1,22 +1,36 @@
-import { SORT } from './const';
-import { OfferType } from './types/types';
+import { SORT_TYPES } from './const';
+import { OfferType } from './types/offerType';
 
-export const sortingOffers = (offers: OfferType[], sort: string) : OfferType[] => {
+export const sortOffers = (
+  offers: OfferType[],
+  sortType: string
+): OfferType[] => {
   const sortedOffers = [...offers];
-  switch (sort){
-    case SORT.Popular: {
+  switch (sortType) {
+    case SORT_TYPES.Popular: {
       return sortedOffers;
     }
-    case SORT.LowToHigh: {
-      return sortedOffers.sort((A, B) => A.price - B.price);
-    }
-    case SORT.HighToLow: {
-      return sortedOffers.sort((A, B) => B.price - A.price);
-    }
-    case SORT.TopRatedFirst: {
-      return sortedOffers.sort((A, B) => B.rating - A.rating);
-    }
+    case SORT_TYPES.LowToHigh:
+      return sortedOffers.sort((offerA, offerB) => offerA.price - offerB.price);
+    case SORT_TYPES.HighToLow:
+      return sortedOffers.sort((offerA, offerB) => offerB.price - offerA.price);
+    case SORT_TYPES.TopRatedFirst:
+      return sortedOffers.sort((offerA, offerB) => offerB.rating - offerA.rating);
     default:
-      throw new Error('Invalid sort type error');
+      throw new Error('Unknown sort type');
   }
 };
+
+export const formatRating = (rate: number) => `${(rate / 5) * 100}%`;
+
+export const isPasswordValid = (password: string): boolean => {
+  const hasLetter = /[a-zA-Z]/.test(password);
+  const hasNumber = /[0-9]/.test(password);
+
+  return hasLetter && hasNumber;
+};
+
+export function getRandomArrayElement<T>(array: T[]) {
+  const index = Math.floor(Math.random() * array.length);
+  return array[index];
+}

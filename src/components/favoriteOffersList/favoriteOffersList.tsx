@@ -1,17 +1,17 @@
+import { OfferType } from '../../types/offerType';
+import FavoritesOffer from './favoriteOffer/favoriteOffer';
 
-import { OfferType } from '../../types/types';
-import FavoriteOffer from './favoriteOffer/favoriteOffer';
 
-type FavoriteOffersProps = {
-  favoriteOffersList: OfferType[];
-}
+type favoritesListProps = {
+  offers: OfferType[];
+};
 
-function FavoriteOffersList({favoriteOffersList}: FavoriteOffersProps): JSX.Element {
+function favoritesList({offers}: favoritesListProps): JSX.Element {
   return (
-    <div className="favorites__places">
-      {favoriteOffersList.map((favoriteOffer) => (<FavoriteOffer key={favoriteOffer.id} favoriteOffer={favoriteOffer}/>))}
+    <div className="cities__places-list places__list tabs__content">
+      {offers.map((offer) => (<FavoritesOffer key={offer.id} offerData={offer}/>))}
     </div>
   );
 }
 
-export default FavoriteOffersList;
+export default favoritesList;

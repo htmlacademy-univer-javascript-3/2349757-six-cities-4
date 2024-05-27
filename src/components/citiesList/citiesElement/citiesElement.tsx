@@ -1,12 +1,13 @@
 import { useAppSelector } from '../../../hocks';
-import { CityType } from '../../../types/types';
+import { getSelectedCity } from '../../../store';
+import { CityType } from '../../../types/cityType';
 
-type CitiesElementType = {
+type CitiesElementProps = {
   city: CityType;
   onCityChange: (city: CityType) => void;
 };
 
-function CitiesElement({city, onCityChange}: CitiesElementType): JSX.Element {
+export function CitiesElement({city, onCityChange}: CitiesElementProps) {
   return(
     <li className="locations__item" onClick={(evt) => {
       evt.preventDefault();
@@ -16,7 +17,7 @@ function CitiesElement({city, onCityChange}: CitiesElementType): JSX.Element {
       <a className={
         `locations__item-link
         tabs__item
-        ${useAppSelector((state) => state.city) === city ? 'tabs__item--active' : ''}`
+        ${useAppSelector(getSelectedCity) === city ? 'tabs__item--active' : ''}`
       } href="#"
       >
         <span>{city.name}</span>
@@ -24,5 +25,3 @@ function CitiesElement({city, onCityChange}: CitiesElementType): JSX.Element {
     </li>
   );
 }
-
-export default CitiesElement;

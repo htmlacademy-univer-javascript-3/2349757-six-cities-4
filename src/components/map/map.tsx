@@ -1,54 +1,62 @@
-import { Icon, Marker, layerGroup } from 'leaflet';
+import { Icon, Marker } from 'leaflet';
+import { CityType } from '../../types/cityType';
+import { FullOfferType, OfferType } from '../../types/offerType';
 import { useEffect, useRef } from 'react';
 import useMap from '../../hocks/useMap';
-import { CityType, OfferType } from '../../types/types';
 
 type MapProps = {
   offers: OfferType[];
-  selectedOffer: OfferType | undefined;
   city: CityType;
+  selectedOffer: OfferType | FullOfferType | undefined;
 };
 
 const defaultCustomIcon = new Icon({
   iconUrl: 'img/pin.svg',
-  iconSize: [25, 40],
+  iconSize: [28, 40],
   iconAnchor: [20, 40],
 });
 
 const currentCustomIcon = new Icon({
   iconUrl: 'img/pin-active.svg',
-  iconSize: [25, 40],
+  iconSize: [28, 40],
   iconAnchor: [20, 40],
 });
 
-export function Map({ offers, selectedOffer, city }: MapProps) {
+export function Map({offers, selectedOffer, city}: MapProps){
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
+  const markersRef = useRef<Marker[]>([]);
 
   useEffect(() => {
     if (map) {
-      const markerLayer = layerGroup().addTo(map);
-      offers.forEach((offer) => {
-        const marker = new Marker({
-          lat: offer.location.latitude,
-          lng: offer.location.longitude,
+      markersRef.current.forEach((marker) => map.removeLayer(marker));
+      markersRef.current = [];
+
+      offers
+        .filter((offer) => offer !== selectedOffer)
+        .forEach((offer) => {
+          const marker = new Marker({
+            lat: offer.location.latitude,
+            lng: offer.location.longitude,
+          }, {icon: defaultCustomIcon}).addTo(map);
+          markersRef.current.push(marker);
         });
-        marker
-          .setIcon(
-            selectedOffer !== undefined && offer.id === selectedOffer.id
-              ? currentCustomIcon
-              : defaultCustomIcon
-          )
-          .addTo(markerLayer);
-      });
-      return () => {
-        map.removeLayer(markerLayer);
-      };
+
+      if (selectedOffer) {
+        const selectedMarker = new Marker({
+          lat: selectedOffer.location.latitude,
+          lng: selectedOffer.location.longitude,
+        }, {icon: currentCustomIcon}).addTo(map);
+        markersRef.current.push(selectedMarker);
+        map.setView({
+          lat: selectedOffer.location.latitude,
+          lng: selectedOffer.location.longitude
+        }, selectedOffer.location.zoom);
+      }
     }
+
   }, [map, offers, selectedOffer]);
 
 
-  return (
-    <div style={{ height: '100%' }} ref={mapRef}></div>
-  );
+  return <div style={{height: '100%'}} ref={mapRef}></div>;
 }

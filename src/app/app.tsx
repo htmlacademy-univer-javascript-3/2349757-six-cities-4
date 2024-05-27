@@ -1,45 +1,57 @@
-
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../hocks';
+import { fetchfavoritesAction, getAuthCheckedStatus, getAuthorizationStatus, getIsOffersLoading } from '../store';
+import LoadingPage from '../pages/loadingPage/loadingPage';
+import HistoryRouter from '../components/historyRoute/historyRoute';
+import { browserHistory } from '../browserHistory';
+import { Route, Routes } from 'react-router-dom';
+import { ROUTES } from '../const';
 import MainPage from '../pages/mainPage/mainPage';
 import LoginPage from '../pages/loginPage/loginPage';
-import FavoritesPage from '../pages/favoritesPage/favoritesPage';
 import OfferPage from '../pages/offerPage/offerPage';
-import Page404 from '../pages/page404/page404';
 import PrivateRoute from '../privateRoute/privateRoute';
-import { AuthorizationStatus } from '../const';
-import { favoritesMock } from '../mocks/favotites';
-import { useAppSelector } from '../hocks';
-import LoadingPage from '../pages/loadingPage/loadingPage';
+import FavoritesPage from '../pages/favoritesPage/favoritesPage';
+import Page404 from '../pages/page404/page404';
 
 
 function App(): JSX.Element {
-  const isLoading = useAppSelector((state) => state.loadingState);
-  if (isLoading){
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isAuthChecked = useAppSelector(getAuthCheckedStatus);
+  const areOffersLoading = useAppSelector(getIsOffersLoading);
+
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (isAuthChecked) {
+      dispatch(fetchfavoritesAction());
+    }
+  }, [dispatch, isAuthChecked]);
+
+  if (areOffersLoading) {
     return (
       <LoadingPage />
     );
   }
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/'>
-          <Route index element={<MainPage />} />
-          <Route path='login' element={<LoginPage />} />
-          <Route path='favorites' element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.AUT}>
-              <FavoritesPage favoriteOffersList={favoritesMock} />
-            </PrivateRoute>
-          }
-          />
-          <Route path='offer/:id' element={
-            <OfferPage />
-          }
-          />
-        </Route>
-        <Route path='*' element={<Page404 />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  return (areOffersLoading)
+    ? <LoadingPage /> : (
+      <HistoryRouter history={browserHistory}>
+        <Routes>
+          <Route path={ROUTES.Main}>
+            <Route index element={<MainPage />} />
+            <Route path={ROUTES.Login} element={<LoginPage />} />
+            <Route path={ROUTES.Offer} element={<OfferPage />} />s
+            <Route
+              path={ROUTES.Favorites}
+              element={
+                <PrivateRoute authorizationStatus={authorizationStatus}>
+                  <FavoritesPage />
+                </PrivateRoute>
+              }
+            />
+            <Route path={ROUTES.NotFound} element={<Page404 />} />
+          </Route>
+        </Routes>
+      </HistoryRouter>
+    );
 }
 
 export default App;
