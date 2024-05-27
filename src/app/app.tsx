@@ -53,5 +53,4 @@ function App(): JSX.Element {
       </HistoryRouter>
     );
 }
-
 export default App;
