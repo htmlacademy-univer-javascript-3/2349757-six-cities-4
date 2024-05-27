@@ -1,25 +1,27 @@
-import MainOffer from './mainOffer/mainOffer';
-import { OfferType } from '../../types/types';
+import { memo } from 'react';
 import { useAppSelector } from '../../hocks';
-import { sortingOffers } from '../../utils';
+import { getSelectedSortType } from '../../store';
+import { OfferType } from '../../types/offerType';
+import { sortOffers } from '../../utils';
+import MainOffer from './mainOffer/mainOffer';
 
 type MainOffersListProps = {
-  offersList: OfferType[];
-  onMouseEnter: (id: string) => void;
+  offers: OfferType[];
+  onMouseEnter: (point: OfferType) => void;
   onMouseLeave: () => void;
-}
+};
 
-
-function MainOffersList({ offersList, onMouseEnter, onMouseLeave }: MainOffersListProps): JSX.Element {
-  const sortType = useAppSelector((state) => state.selectedSortType);
-
+function MainOffersList({offers, onMouseEnter, onMouseLeave}: MainOffersListProps): JSX.Element {
+  const selectedSortType = useAppSelector(getSelectedSortType);
   return (
     <div className="cities__places-list places__list tabs__content">
-      {sortingOffers(offersList, sortType).map((offer)=>(
+      {sortOffers(offers, selectedSortType).map((offer) => (
         <MainOffer key={offer.id} offer={offer} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} />
       ))}
     </div>
   );
 }
 
-export default MainOffersList;
+const MemoizedOffersList = memo(MainOffersList);
+
+export default MemoizedOffersList;

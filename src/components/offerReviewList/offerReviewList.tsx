@@ -1,20 +1,16 @@
-import React from 'react';
-import OfferReview from './offerReview/offerReview';
-import { ReviewType } from '../../types/types';
+import { ReviewType } from '../../types/reviewType';
+import Review from './offerReview/offerReview';
 
-type offerReviewListProps = {
+type ReviewsListProps = {
   reviews: ReviewType[];
 }
 
-function OfferReviewList({reviews}: offerReviewListProps): JSX.Element {
-  return (
-    <React.Fragment>
-      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
-      <ul className="reviews__list">
-        {reviews.map((review) => (<OfferReview key={review.id} review={review}/>))}
-      </ul>
-    </React.Fragment>
+function ReviewsList({reviews}: ReviewsListProps): JSX.Element {
+  return(
+    <ul className="reviews__list">
+      {reviews.map((review) => (<Review key={review.id} review={review}/>))}
+    </ul>
   );
 }
 
-export default OfferReviewList;
+export default ReviewsList;
