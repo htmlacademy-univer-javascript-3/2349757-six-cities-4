@@ -2,11 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import { OfferType } from '../../../types/offerType';
 import FavoriteButton from '../../favoriteButton/favoriteButton';
 
-type FavoritesProps = {
+type FavoriteProps = {
   offerData: OfferType;
 };
 
-function FavoritesOffer({offerData}: FavoritesProps): JSX.Element {
+function FavoriteOffer({offerData}: FavoriteProps): JSX.Element {
   const navigate = useNavigate();
 
   const premiumBlock = (
@@ -53,4 +53,4 @@ function FavoritesOffer({offerData}: FavoritesProps): JSX.Element {
   );
 }
 
-export default FavoritesOffer;
+export default FavoriteOffer;

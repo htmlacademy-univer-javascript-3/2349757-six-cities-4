@@ -2,7 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { FullOfferType } from '../../../types/offerType';
 import { AppDispatch, State } from '../../../types/stateType';
 import { AxiosInstance } from 'axios';
-import { NameSpace, ROUTES } from '../../../const';
+import { APIRoute, NameSpace, ROUTES } from '../../../const';
+import { redirectToRoute } from '../../action';
 
 export const fetchOfferAction = createAsyncThunk<
 FullOfferType | null,

@@ -3,11 +3,11 @@ import { OfferType } from '../../../types/offerType';
 import FavoriteButton from '../../favoriteButton/favoriteButton';
 import { formatRating } from '../../../utils';
 
-type NearOfferProps = {
+type NearbyOfferProps = {
   offer: OfferType;
 };
 
-function NearOffer({ offer }: NearOfferProps): JSX.Element {
+function NearbyOffer({ offer }: NearbyOfferProps): JSX.Element {
   return (
     <article
       className="near-places__card place-card"
@@ -50,4 +50,4 @@ function NearOffer({ offer }: NearOfferProps): JSX.Element {
   );
 }
 
-export default NearOffer;
+export default NearbyOffer;

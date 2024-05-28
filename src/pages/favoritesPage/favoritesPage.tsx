@@ -4,7 +4,7 @@ import { getAreFavoritesLoading, getFavorites } from '../../store';
 import { OfferType } from '../../types/offerType';
 import { CITIES } from '../../const';
 import { Link } from 'react-router-dom';
-import FavoritesOffer from '../../components/favoriteOffersList/favoriteOffer/favoriteOffer';
+import FavoriteOffer from '../../components/favoriteOffersList/favoriteOffer/favoriteOffer';
 import LoadingPage from '../loadingPage/loadingPage';
 
 function FavoritesPage(): JSX.Element {
@@ -39,7 +39,7 @@ function FavoritesPage(): JSX.Element {
                       </div>
                       <div className="favorites__places">
                         {cityOffers.map((offer) => (
-                          <FavoritesOffer key={offer.id} offerData={offer} />
+                          <FavoriteOffer key={offer.id} offerData={offer} />
                         ))}
                       </div>
                     </li>

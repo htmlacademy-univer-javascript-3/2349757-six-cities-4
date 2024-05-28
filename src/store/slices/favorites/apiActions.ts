@@ -5,8 +5,8 @@ import { AxiosInstance } from 'axios';
 import { APIRoute, NameSpace } from '../../../const';
 import { favoriteDataType } from '../../../types/favoriteDataType';
 import { updateFewOffers } from '../fewOffers';
-import { updateSingleOffer } from '../singleOffer';
-import { updateFewNearby } from '../nearOffers';
+import { updateSingleOffer } from '../singleOffer/singleOfferData';
+import { updateFewNearby } from '../nearOffers/nearOffersData';
 import { updateFewFavorites } from './favoritesData';
 
 export const fetchfavoritesAction = createAsyncThunk<

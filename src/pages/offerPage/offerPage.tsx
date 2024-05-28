@@ -6,10 +6,10 @@ import LoadingPage from '../loadingPage/loadingPage';
 import Page404 from '../page404/page404';
 import Header from '../../components/header/header';
 import FavoriteButton from '../../components/favoriteButton/favoriteButton';
-import ReviewsList from '../../components/offerReviewList/offerReviewList';
+import OfferReviewList from '../../components/offerReviewList/offerReviewList';
 import CommentForm from '../../components/commentForm/commentForm';
 import { Map } from '../../components/map/map';
-import NearOffersList from '../../components/nearbyOffersList/nearbyOffersList';
+import NearbyOffersList from '../../components/nearbyOffersList/nearbyOffersList';
 
 function OfferPage(): JSX.Element {
   const { id } = useParams();
@@ -124,7 +124,7 @@ function OfferPage(): JSX.Element {
               </div>
               <section className="offer__reviews reviews">
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
-                <ReviewsList
+                <OfferReviewList
                   reviews={reviews.slice().sort((a, b) => {
                     const dateA = new Date(a.date).getTime();
                     const dateB = new Date(b.date).getTime();
@@ -144,7 +144,7 @@ function OfferPage(): JSX.Element {
           </section>
         </section>
         <div className="container">
-          <NearOffersList offers={nearbyOffers.slice(0, 3)} />
+          <NearbyOffersList offers={nearbyOffers.slice(0, 3)} />
         </div>
       </main>
     </div>
