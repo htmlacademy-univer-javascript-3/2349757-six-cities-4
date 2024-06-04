@@ -15,11 +15,12 @@ type FavoriteButtonProps = {
 };
 
 function FavoriteButton({ isFavorite, id, width, height, buttonClass, activeClass, iconClass }: FavoriteButtonProps): JSX.Element {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const isAuth = useAppSelector(getAuthCheckedStatus);
   const disabledBookmarkButton = useAppSelector(getIsFavoriteStatusSubmitting);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleClick = (evt: MouseEvent<HTMLButtonElement>) => {
     evt.preventDefault();

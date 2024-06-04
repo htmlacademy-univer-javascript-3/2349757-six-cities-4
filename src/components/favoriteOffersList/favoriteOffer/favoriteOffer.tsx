@@ -8,14 +8,9 @@ type FavoriteProps = {
 
 function FavoriteOffer({offerData}: FavoriteProps): JSX.Element {
 
-  const premiumBlock = (
-    <div className="place-card__mark">
-      <span>Premium</span>
-    </div>
-  );
   return (
     <article className="favorites__card place-card">
-      {offerData.isPremium ? premiumBlock : null}
+      {offerData.isPremium && <div className="place-card__mark"> <span>Premium</span> </div>}
       <div className="favorites__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${offerData.id}`}>
           <img className="place-card__image" src={offerData.previewImage} width="150" height="110" alt="Place image"/>

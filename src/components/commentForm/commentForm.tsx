@@ -13,18 +13,17 @@ type CommentFormProps = {
 };
 
 function CommentForm({ id }: CommentFormProps): JSX.Element {
-  const dispatch = useAppDispatch();
-
   const isLoading = useAppSelector(getIsReviewsStatusSubmitting);
   const reviewsStatus = useAppSelector(getReviewsHasError);
+  const dispatch = useAppDispatch();
+
+  const [valid, setValid] = useState(false);
+  const disabledSubmitButton = !valid || isLoading;
 
   const [review, setReview] = useState({
     text: '',
     rating: 0
   });
-
-  const [valid, setValid] = useState(false);
-  const disabledSubmitButton = !valid || isLoading;
 
   const validateForm = (comment: string, newRating: number) => {
     const isValid = (
@@ -42,6 +41,12 @@ function CommentForm({ id }: CommentFormProps): JSX.Element {
     });
   };
 
+  const handleRatingChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    const newRating = Number(evt.target.value);
+    setReview({...review, rating: newRating});
+    validateForm(review.text, newRating);
+  };
+
   useEffect(() => {
     if (reviewsStatus === LoadingStatus.Success) {
       resetForm();
@@ -49,17 +54,6 @@ function CommentForm({ id }: CommentFormProps): JSX.Element {
     }
   }, [reviewsStatus, dispatch]);
 
-  const handleRatingChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    const newRating = Number(evt.target.value);
-    setReview({...review, rating: newRating});
-    validateForm(review.text, newRating);
-  };
-
-  const handleTextChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
-    const newText = evt.target.value;
-    setReview({...review, text: newText});
-    validateForm(newText, review.rating);
-  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -70,6 +64,12 @@ function CommentForm({ id }: CommentFormProps): JSX.Element {
         rating: review.rating,
       })
     );
+  };
+
+  const handleTextChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
+    const newText = evt.target.value;
+    setReview({...review, text: newText});
+    validateForm(newText, review.rating);
   };
 
   return (

@@ -22,7 +22,6 @@ function CityOffers({ city, currentCityOffers }: CityOffersProps): JSX.Element {
     () => setSelectedOffer(undefined),
     []
   );
-
   return (
     <div className="cities">
       {currentCityOffers.length ? (

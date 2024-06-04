@@ -10,12 +10,6 @@ type MainOfferProps = {
 
 function MainOffer({onMouseEnter, onMouseLeave, offer}: MainOfferProps): JSX.Element {
 
-  const premiumBlock = (
-    <div className="place-card__mark">
-      <span>Premium</span>
-    </div>
-  );
-
   return (
     <article className="cities__card place-card"
       onMouseEnter={(evt) => {
@@ -27,7 +21,7 @@ function MainOffer({onMouseEnter, onMouseLeave, offer}: MainOfferProps): JSX.Ele
         onMouseLeave();
       }}
     >
-      {offer.isPremium ? premiumBlock : null}
+      {offer.isPremium && <div className="place-card__mark"> <span>Premium</span> </div>}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${offer.id}`}>
           <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />

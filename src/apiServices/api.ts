@@ -7,7 +7,7 @@ type DetailMessageType = {
   message: string;
 }
 
-export const createAPI = (): AxiosInstance => {
+export const makeAPI = (): AxiosInstance => {
   const api = axios.create({
     baseURL: BACKEND_URL,
     timeout: REQUEST_TIMEOUT,

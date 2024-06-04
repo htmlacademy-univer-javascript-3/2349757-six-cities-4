@@ -1,6 +1,6 @@
 import { test, expect, Locator } from '@playwright/test';
 
-test('Фильтрация по городам', async ({ page }) => {
+test('Проверка фильтра по городам', async ({ page }) => {
   const isCityActive = async (locator: Locator) => {
     const classList = await locator.evaluate((el) => [...el.classList]);
     return classList.includes('tabs__item--active');

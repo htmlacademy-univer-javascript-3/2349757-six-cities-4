@@ -1,23 +1,5 @@
 import { CityType } from './types/cityType';
 
-
-export enum AuthorizationStatus {
-  Auth = 'AUTH',
-  NoAuth = 'NO_AUTH',
-  Unknown = 'UNKNOWN',
-}
-
-export enum SortTypes {
-  Popular = 'Popular',
-  LowToHigh = 'Price: low to high',
-  HighToLow = 'Price: high to low',
-  TopRatedFirst = 'Top rated first',
-}
-
-type Cities = {
-  [key: string]: CityType;
-};
-
 export const CITIES: Cities = {
   Paris: {
     name: 'Paris',
@@ -69,6 +51,23 @@ export const CITIES: Cities = {
   }
 };
 
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
+
+export enum SortTypes {
+  Popular = 'Popular',
+  LowToHigh = 'Price: low to high',
+  HighToLow = 'Price: high to low',
+  TopRatedFirst = 'Top rated first',
+}
+
+type Cities = {
+  [key: string]: CityType;
+};
+
 export enum APIRoute {
   Offers = '/offers',
   Login = '/login',
@@ -98,12 +97,12 @@ export enum AppRoutes {
   NotFound = '/*',
 }
 
+export const BACKEND_URL = 'https://14.design.htmlacademy.pro/six-cities';
+export const REQUEST_TIMEOUT = 5000;
+
 export enum LoadingStatus {
   Idle = 'idle',
   Loading = 'loading',
   Success = 'success',
   Error = 'error',
 }
-
-export const BACKEND_URL = 'https://14.design.htmlacademy.pro/six-cities';
-export const REQUEST_TIMEOUT = 5000;

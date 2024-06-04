@@ -15,23 +15,23 @@ import Page404 from '../pages/page404/page404';
 
 
 function App(): JSX.Element {
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  const isAuthChecked = useAppSelector(getAuthCheckedStatus);
-  const areOffersLoading = useAppSelector(getIsOffersLoading);
+  const autCheck = useAppSelector(getAuthCheckedStatus);
+  const offersLoad = useAppSelector(getIsOffersLoading);
+  const autStatus = useAppSelector(getAuthorizationStatus);
 
   const dispatch = useAppDispatch();
   useEffect(() => {
-    if (isAuthChecked) {
+    if (autCheck) {
       dispatch(fetchfavoritesAction());
     }
-  }, [dispatch, isAuthChecked]);
+  }, [dispatch, autCheck]);
 
-  if (areOffersLoading) {
+  if (offersLoad) {
     return (
       <LoadingPage />
     );
   }
-  return (areOffersLoading)
+  return (offersLoad)
     ? <LoadingPage /> : (
       <HistoryRouter history={browserHistory}>
         <Routes>
@@ -42,7 +42,7 @@ function App(): JSX.Element {
             <Route
               path={AppRoutes.Favorites}
               element={
-                <PrivateRoute authorizationStatus={authorizationStatus}>
+                <PrivateRoute authorizationStatus={autStatus}>
                   <FavoritesPage />
                 </PrivateRoute>
               }

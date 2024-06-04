@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('Избранное (неавторизован/авторизован)', async ({
+test('Проверка списка выбранных карточек', async ({
   page,
 }) => {
   const isFavorite = async () => {
