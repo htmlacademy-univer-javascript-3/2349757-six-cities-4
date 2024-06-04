@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('Авторизация валидна/невалидна', async ({ page }) => {
+test('Проверка авторизации', async ({ page }) => {
   await page.goto('http://localhost:5173/login');
 
   await page.fill('input[name="email"]', 'UserTest@mail.com');

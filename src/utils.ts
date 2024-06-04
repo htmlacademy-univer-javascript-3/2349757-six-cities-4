@@ -1,6 +1,21 @@
 import { SortTypes } from './const';
 import { OfferType } from './types/offerType';
 
+
+export const formatRating = (rate: number) => `${(rate / 5) * 100}%`;
+
+export const isPasswordValid = (password: string): boolean => {
+  const hasLetter = /[a-zA-Z]/.test(password);
+  const hasNumber = /[0-9]/.test(password);
+
+  return hasLetter && hasNumber;
+};
+
+export function getRandomArrayElement<T>(array: T[]) {
+  const index = Math.floor(Math.random() * array.length);
+  return array[index];
+}
+
 export const sortOffers = (
   offers: OfferType[],
   sortType: string
@@ -20,17 +35,3 @@ export const sortOffers = (
       throw new Error('Unknown sort type');
   }
 };
-
-export const formatRating = (rate: number) => `${(rate / 5) * 100}%`;
-
-export const isPasswordValid = (password: string): boolean => {
-  const hasLetter = /[a-zA-Z]/.test(password);
-  const hasNumber = /[0-9]/.test(password);
-
-  return hasLetter && hasNumber;
-};
-
-export function getRandomArrayElement<T>(array: T[]) {
-  const index = Math.floor(Math.random() * array.length);
-  return array[index];
-}

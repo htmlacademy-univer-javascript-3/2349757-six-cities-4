@@ -1,6 +1,6 @@
 import {test, expect} from '@playwright/test'
 
-test('Загрузки карточек', async ({ page }) => {
+test('Проверка выгрузки карточек', async ({ page }) => {
 
   await Promise.all([
     page.waitForResponse(

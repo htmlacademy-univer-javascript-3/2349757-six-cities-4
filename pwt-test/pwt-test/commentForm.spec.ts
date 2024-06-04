@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
 
-test('Форма отправки комментария (неавторизован/авторизован)', async ({
+test('Проверка формы комментария', async ({
     page,
   }) => {
     const REVIEW_TEXT =
-      'Текст для формы комментария длиной больше пятидесяти символов чтобы он наверняка прошёл';
+      'Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст';
     const RATING = 'not bad';
     const isCommentFormVisible = async () => await page.isVisible('.reviews__form')
 
