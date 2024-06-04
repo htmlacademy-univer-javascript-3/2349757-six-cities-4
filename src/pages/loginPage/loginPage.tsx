@@ -33,7 +33,6 @@ function LoginPage(): JSX.Element {
     toast.error('Некорректный пароль!');
   };
 
-
   return (
     <div className="page page--gray page--login">
       <header className="header">
