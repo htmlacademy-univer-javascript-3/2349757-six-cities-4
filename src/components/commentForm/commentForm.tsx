@@ -8,11 +8,11 @@ import {
 } from '../../store';
 import { LoadingStatus } from '../../const';
 
-type CommentFromProps = {
+type CommentFormProps = {
   id: string;
 };
 
-function CommentForm({ id }: CommentFromProps): JSX.Element {
+function CommentForm({ id }: CommentFormProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const isLoading = useAppSelector(getIsReviewsStatusSubmitting);

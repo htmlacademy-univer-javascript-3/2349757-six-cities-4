@@ -1,4 +1,4 @@
-import { NameSpace } from '../../../const';
+import { LoadingStatus, NameSpace } from '../../../const';
 import { ReviewType } from '../../../types/reviewType';
 import { State } from '../../../types/stateType';
 

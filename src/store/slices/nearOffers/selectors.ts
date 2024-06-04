@@ -1,6 +1,6 @@
-import { State } from 'history';
 import { OfferType } from '../../../types/offerType';
 import { NameSpace } from '../../../const';
+import { State } from '../../../types/stateType';
 
 export const getNearbyOffers = (state: State): OfferType[] =>
   state[NameSpace.NearbyOffersData].nearby;

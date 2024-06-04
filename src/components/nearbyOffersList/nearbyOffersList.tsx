@@ -1,17 +1,17 @@
 import { OfferType } from '../../types/offerType';
-import NearOffer from './nearbyOffer/nearbyOffer';
+import NearbyOffer from './nearbyOffer/nearbyOffer';
 
-type NearOffersListProps = {
+type NearbyOffersListProps = {
   offers: OfferType[];
 };
 
-function NearOffersList({offers}: NearOffersListProps): JSX.Element {
+function NearbyOffersList({offers}: NearbyOffersListProps): JSX.Element {
   return (
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
       <div className="near-places__list places__list">
         {offers.map((offer) => (
-          <NearOffer key={offer.id} offer={offer} />
+          <NearbyOffer key={offer.id} offer={offer} />
         ))}
       </div>
     </section>
@@ -19,4 +19,4 @@ function NearOffersList({offers}: NearOffersListProps): JSX.Element {
   );
 }
 
-export default NearOffersList;
+export default NearbyOffersList;

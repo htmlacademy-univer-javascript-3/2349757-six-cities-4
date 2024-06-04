@@ -5,7 +5,7 @@ type ReviewsListProps = {
   review: ReviewType;
 };
 
-function Review({review}: ReviewsListProps): JSX.Element {
+function OfferReview({review}: ReviewsListProps): JSX.Element {
   return(
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -32,4 +32,4 @@ function Review({review}: ReviewsListProps): JSX.Element {
   );
 }
 
-export default Review;
+export default OfferReview;

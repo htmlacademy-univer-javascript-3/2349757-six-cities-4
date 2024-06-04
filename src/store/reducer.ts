@@ -2,7 +2,7 @@ import { combineReducers } from '@reduxjs/toolkit';
 import { NameSpace } from '../const';
 import { globalState } from './slices/global';
 import { userData } from './slices/user';
-import { fewOffersData } from './slices/fewOffers';
+import { fewOffersData } from './slices/fewOffers/fewOffersData';
 import { singleOfferData } from './slices/singleOffer';
 import { favoritesData } from './slices/favorites';
 import { nearbyOffersData } from './slices/nearOffers';

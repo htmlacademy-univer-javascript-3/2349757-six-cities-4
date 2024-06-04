@@ -3,21 +3,22 @@ import { OfferType } from '../../../types/offerType';
 import FavoriteButton from '../../favoriteButton/favoriteButton';
 import { formatRating } from '../../../utils';
 
-type NearOfferProps = {
+type NearbyOfferProps = {
   offer: OfferType;
 };
 
-function NearOffer({ offer }: NearOfferProps): JSX.Element {
+function NearbyOffer({ offer }: NearbyOfferProps): JSX.Element {
   return (
     <article
       className="near-places__card place-card"
     >
-      <Link to={`/offer/${offer.id}`}>
-        {offer.isPremium && <div className="place-card__mark"> <span>Premium</span> </div>}
-        <div className="cities__image-wrapper place-card__image-wrapper">
-
+      {offer.isPremium && <div className="place-card__mark"> <span>Premium</span> </div>}
+      <div className="cities__image-wrapper place-card__image-wrapper">
+        <Link to={`/offer/${offer.id}`}>
           <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
-        </div>
+        </Link>
+      </div>
+      <Link to={`/offer/${offer.id}`}>
         <div className="place-card__info">
           <div className="place-card__price-wrapper">
             <div className="place-card__price">
@@ -50,4 +51,4 @@ function NearOffer({ offer }: NearOfferProps): JSX.Element {
   );
 }
 
-export default NearOffer;
+export default NearbyOffer;

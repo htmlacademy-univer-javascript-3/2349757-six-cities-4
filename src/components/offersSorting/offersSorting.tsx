@@ -1,7 +1,7 @@
 import { memo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hocks';
 import { changeSortingType, getSelectedSortType } from '../../store';
-import { SORT_TYPES } from '../../const';
+import { SortTypes } from '../../const';
 
 function OffersSorting() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +24,7 @@ function OffersSorting() {
           ${isOpen ? 'places__options--opened' : ''}`
         }
       >
-        {Object.values(SORT_TYPES).map((type) => (
+        {Object.values(SortTypes).map((type) => (
           <li
             key={type}
             className={`places__option ${selectedSortType === type && 'places__option--active'}`}
