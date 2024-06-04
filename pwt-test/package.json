@@ -1,0 +1,16 @@
+{
+  "name": "pwt-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "pwt-test": "cd pwt-test && npm install && npx playwright test && npx playwright show-report",
+    "test": "cd pwt-test && npm install && npx playwright test && npx playwright show-report"},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.44.1",
+    "@types/node": "^20.14.1"
+  }
+}

@@ -1,8 +1,8 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import { reducer } from '../store/reducer';
-import { REDIRECT_TO_ROUTE_TYPE } from '../store/action';
 import { browserHistory } from '../browserHistory';
 import { Middleware } from 'redux';
+import { REDIRECT_TO_ROUTE_TYPE } from '../store/action';
+import { reducer } from '../store/reducer';
 
 type Reducer = ReturnType<typeof reducer>;
 
